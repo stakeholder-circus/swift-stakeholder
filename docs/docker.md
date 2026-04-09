@@ -1,9 +1,11 @@
-# Rust Docker
+# Docker
 
-## Build and test
-- `docker build -t rust-stakeholder .`
-- `docker run --rm rust-stakeholder --list-values`
+The repo uses the official Swift 5.10 image for build and test.
 
-## Rationale
-- The image compiles and tests the Rust baseline before packaging the runtime binary.
-- Docker is the reproducible Linux gate; host and CI matrices still cover native OS behavior.
+## Commands
+- `docker build -t swift-stakeholder .`
+- `docker run --rm swift-stakeholder --list-values`
+
+## CI intent
+- Build and test in the container image.
+- Smoke the contract surface with `--list-values`.

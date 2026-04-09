@@ -1,19 +1,10 @@
-# Contributing to rust-stakeholder
+# Contributing
 
-## Rules
-- Treat Rust as the source-of-truth baseline for downstream ports.
-- Use Conventional Commits.
-- Do not land silent behavioral changes; update `stakeholder-core` traceability and docs in the same tranche.
-- Keep deterministic seeded behavior stable unless the change is explicitly documented as a baseline evolution.
+Do not replace the fail-fast scaffold with parity logic until the Rust audit is complete.
 
-## Local workflow
-- `cargo fmt`
-- `cargo clippy -- -D warnings`
-- `cargo test`
-- `docker build -t rust-stakeholder .`
-- `docker run --rm rust-stakeholder --list-values`
-
-## Change discipline
-- Generator-family additions must update docs, examples, and fixtures.
-- Experimental provider work must stay clearly separated from deterministic parity paths.
-- Prefer additive event-schema evolution over breaking changes.
+## Working commands
+- `swift build`
+- `swift test`
+- `swift-format lint --recursive Sources Tests`
+- `docker build -t swift-stakeholder .`
+- `docker run --rm swift-stakeholder --list-values`

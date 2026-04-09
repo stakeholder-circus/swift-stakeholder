@@ -1,19 +1,12 @@
-# Rust Tooling
+# Tooling
 
-## Commands
-- `cargo fmt`
-- `cargo clippy -- -D warnings`
-- `cargo build`
-- `cargo test`
-- `docker build -t rust-stakeholder .`
-- `docker run --rm rust-stakeholder --list-values`
-
-## Extended local checks
-- `cargo nextest run`
-- `cargo audit`
-- `cargo deny check`
-- `cargo udeps`
+## Standard commands
+- `swift build`
+- `swift test`
+- `swift-format lint --recursive Sources Tests`
+- `docker build -t swift-stakeholder .`
+- `docker run --rm swift-stakeholder --list-values`
 
 ## Notes
-- The Docker path is the reproducible Linux baseline.
-- Native CI should still cover macOS and Windows semantics.
+- `swift-format` is the formatter/linter gate when the tool is available in the environment.
+- The package stays dependency-light and uses the Swift Package Manager for build and test.
