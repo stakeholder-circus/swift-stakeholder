@@ -40,6 +40,10 @@ let dedicatedFamilies: Set<String> = [
     "network-activity",
     "system-monitoring",
     "agent-workflows",
+    "platform-engineering",
+    "observability-ai-runtime",
+    "delivery-preview-ops",
+    "supply-chain-security",
 ]
 
 let dedicatedRendererDetails: [String: (group: String, focusKey: String, focusValue: String)] = [
@@ -78,6 +82,40 @@ let dedicatedRendererDetails: [String: (group: String, focusKey: String, focusVa
         focusKey: "coordinationMode",
         focusValue: "delegated agent work, approval gates, and cross-repo handoff envelopes"
     ),
+    "platform-engineering": (
+        group: "modern-core",
+        focusKey: "platformSurface",
+        focusValue: "golden paths, identity boundaries, and queue ownership in the shared platform lane"
+    ),
+    "observability-ai-runtime": (
+        group: "modern-core",
+        focusKey: "runtimeSignals",
+        focusValue: "trace spans, token burn, GPU pressure, and policy denials in one runtime lane"
+    ),
+    "delivery-preview-ops": (
+        group: "modern-core",
+        focusKey: "deliveryGuardrail",
+        focusValue: "preview deploys, canaries, release flags, and rollback checkpoints under seed control"
+    ),
+    "supply-chain-security": (
+        group: "modern-core",
+        focusKey: "supplyChainPosture",
+        focusValue: "provenance, attestations, dependency drift, and secret exposure in one security lane"
+    ),
+]
+
+let dedicatedJavaPaths: [String: String] = [
+    "code-analyzer": "src/main/java/com/stakeholder/generators/CodeAnalyzerRenderer.java",
+    "data-processing": "src/main/java/com/stakeholder/generators/DataProcessingRenderer.java",
+    "jargon": "src/main/java/com/stakeholder/generators/JargonRenderer.java",
+    "metrics": "src/main/java/com/stakeholder/generators/MetricsRenderer.java",
+    "network-activity": "src/main/java/com/stakeholder/generators/NetworkActivityRenderer.java",
+    "system-monitoring": "src/main/java/com/stakeholder/generators/SystemMonitoringRenderer.java",
+    "agent-workflows": "src/main/java/com/stakeholder/generators/AgentWorkflowsRenderer.java",
+    "platform-engineering": "src/main/java/com/stakeholder/generators/PlatformEngineeringRenderer.java",
+    "observability-ai-runtime": "src/main/java/com/stakeholder/generators/ObservabilityAIRuntimeRenderer.java",
+    "delivery-preview-ops": "src/main/java/com/stakeholder/generators/DeliveryPreviewOpsRenderer.java",
+    "supply-chain-security": "src/main/java/com/stakeholder/generators/SupplyChainSecurityRenderer.java",
 ]
 
 enum SessionRuntime {
@@ -253,6 +291,8 @@ enum SessionRuntime {
             "smokeEvidence": "true",
             "traceabilitySourceRepo": "rust-stakeholder",
             "traceabilitySourcePath": "Sources/stakeholder/Runtime.swift",
+            "traceabilityJavaRepo": "java-stakeholder",
+            "traceabilityJavaPath": dedicatedJavaPaths[selection.family] ?? "",
             "traceabilityContractRepo": "stakeholder-core",
             "traceabilityContractPath": "docs/generator-families.md",
             "traceabilityParityClass": "depth",
@@ -263,7 +303,7 @@ enum SessionRuntime {
             metadata["discipline"] = spec.cliValue
         }
         return RenderedActivity(
-            message: "\(spec.title.lowercased()) depth pass for \(config.projectName): \(detail) Traceability is anchored to Rust and stakeholder-core.",
+            message: "\(spec.title.lowercased()) depth pass for \(config.projectName): \(detail) Traceability is anchored to Java, Rust, and stakeholder-core.",
             metadata: metadata
         )
     }
@@ -336,6 +376,30 @@ func dedicatedDetail(family: String, jargon: JargonLevel) -> String {
             .medium: "routing coding-agent work through review queues and approval gates",
             .high: "coordinating delegated patch runs, blocked tool calls, and human checkpoints across multiple repos",
             .extreme: "orchestrating branch handoff envelopes, MCP leases, and merge-safe approval chains for background agents",
+        ],
+        "platform-engineering": [
+            .low: "keeping golden paths, identity handoffs, and queue ownership explicit across the platform lane",
+            .medium: "keeping golden paths, identity handoffs, and queue ownership explicit across the platform lane",
+            .high: "lining up golden paths, identity federation, queue ownership, and paved-road rollouts across the platform control plane",
+            .extreme: "reconciling platform contracts, tenancy edges, build queues, and paved-road drift across the shared engineering surface",
+        ],
+        "observability-ai-runtime": [
+            .low: "tracking trace spans, token burn, GPU pressure, and policy denials in one runtime lane",
+            .medium: "tracking trace spans, token burn, GPU pressure, and policy denials in one runtime lane",
+            .high: "correlating inference spans, token burn, GPU saturation, and sandbox denials across the AI runtime",
+            .extreme: "stitching evaluation regressions, trace waterfalls, GPU fragmentation, and policy failures into one runtime investigation lane",
+        ],
+        "delivery-preview-ops": [
+            .low: "keeping preview deploys, canaries, and release flags legible before promotion",
+            .medium: "keeping preview deploys, canaries, and release flags legible before promotion",
+            .high: "coordinating preview deploys, canary health, release flags, and rollback checkpoints under seed control",
+            .extreme: "threading preview environments, phased rollouts, rollback gates, and reviewer sign-off through one delivery lane",
+        ],
+        "supply-chain-security": [
+            .low: "tracking provenance, attestations, dependency drift, and secret exposure in one security lane",
+            .medium: "tracking provenance, attestations, dependency drift, and secret exposure in one security lane",
+            .high: "linking attestations, dependency drift, key rotation, and registry trust signals across the supply chain",
+            .extreme: "triaging attestation gaps, compromised dependencies, secret sprawl, and signing-boundary drift before release",
         ],
     ]
     return details[family]?[jargon] ?? "running through the shared deterministic fallback renderer"
