@@ -18,7 +18,7 @@ jobs:
         with:
           submodules: recursive
       - if: matrix.os == 'ubuntu-latest'
-        uses: swift-actions/setup-swift@v2
+        uses: swift-actions/setup-swift@v3
         with:
           swift-version: "5.10"
       - run: swift --version
