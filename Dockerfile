@@ -1,4 +1,4 @@
-FROM swift:6.3
+FROM swift:6.4
 WORKDIR /app
 COPY Package.swift .
 COPY Sources ./Sources
